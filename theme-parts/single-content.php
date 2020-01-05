@@ -82,7 +82,7 @@
     const lightboxCloser = document.querySelector('[id="lightbox-close"]'); 
     const lightboxImage = document.querySelector('[id="lightbox-image"]');
 
-    console.log(lightbox.classList);
+    const lightboxStyles = window.getComputedStyle(lightbox).getPropertyValue('transition-duration');
 
     lightboxCloser.addEventListener('click', function(event){
 
