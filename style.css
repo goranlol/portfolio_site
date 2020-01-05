@@ -1,6 +1,7 @@
 /*
 Theme Name: Portfolio
 Author: Goran Grce
+Version: 2.7 "INFRA"
 Author URI: https://wordpress.org/
 Description: just a coolass theme
 
@@ -9,8 +10,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-
-Testing to see if git is doing things correctly. 
 
 ==================================================
  #	WORDPRESS RESETS							              #
@@ -29,10 +28,10 @@ Testing to see if git is doing things correctly.
 	--heading-color:#ADB5B9;
 	--home-btn-color:#ADB5B9;
 	--body-copy-color: #7B878F;
-  	--label-color:#ADB5B9;
+  --label-color:#ADB5B9;
 
-  	--ease-in:0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
-  	--ease-out:0.65s cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in:0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-out:0.65s cubic-bezier(0.19, 1, 0.22, 1);
 
 }
 
@@ -72,7 +71,7 @@ IFRAME {
 
 img[class*="wp-image"]{
   
-  padding:0px 0px 64px 0px;
+  margin:0px 0px 64px 0px;
 
 }
 
@@ -418,6 +417,8 @@ a:hover {
 }
 
 
+/* PROJECT PAGE CONTENT */ 
+
 .label {
 
   color:var(--label-color);
@@ -507,6 +508,55 @@ a:hover {
 
 }
 
+/* LIGHTBOX STYLES */
+
+.lightbox {
+  display:block;
+  width:100%;
+  height:0%;
+  overflow:hidden;
+
+  background-color:rgba(40, 67, 78, 0.5);
+
+  transition:var(--ease-out);
+
+}
+
+.lightbox-open {
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+
+  background-color:rgba(40, 67, 78, 0.5);
+
+  transition:var(--ease-in);
+
+}
+
+#lightbox-wrapper {
+  display:fixed;
+  height:100%;
+  width:100%;
+  display:block;
+  position:fixed;
+  top:-100vh;
+}
+
+#lightbox-close {
+  display:inherit;
+  width:inherit; 
+  height:inherit;
+  cursor:pointer;
+}
+
+#lightbox-image {
+  height:100vh;
+  width:auto;
+  display:inherit;
+
+  margin:auto;
+}
 
 /*
 #=============================================
