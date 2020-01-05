@@ -66,6 +66,10 @@ IFRAME {
 
 .wp-image {
 
+}
+
+img[class*="wp-image"]{
+  
   padding:0px 0px 64px 0px;
 
 }
@@ -80,8 +84,8 @@ IFRAME {
 @font-face {
 
   font-family: 'Bainai';
-  src: url(/font/Bainai-DEMO-Regular.woff2) format('woff2'),
-       url(/font/Bainai-DEMO-Regular.woff) format('woff');
+  src: url(font/Bainai-DEMO-Regular.woff2) format('woff2'),
+       url(font/Bainai-DEMO-Regular.woff) format('woff');
 
 }
 
@@ -222,6 +226,7 @@ a:hover {
   border: 0.0px solid var(--heading-color);
 
   transition:var(--ease-out);
+  z-index:2;
 
 }
 
@@ -335,33 +340,6 @@ a:hover {
   #  PROJECT PAGE                           #
 #=============================================
 */
-
-.lightbox {
-	display: none;
-
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	z-index:10;
-	text-align: center;
-	top: 0;
-	left: 0;
-	background: rgba(0,0,0,0.8);
-}
-
-.lightbox img {
-	display:inherit;
-	width:auto;
-	height:100%;
-	margin:auto;
-}
-
-.lightbox:target {
-	outline: none;
-
-	display: block;
-	position:fixed;
-}
 
 .main-col {
 
@@ -547,6 +525,7 @@ a:hover {
 
     top:38px;
     right:48px;
+    z-index:2;
 
   }
 

@@ -61,3 +61,17 @@
 	</div>
 
 </body>
+
+
+<script>
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  var lightboxImages = document.querySelector('[class^="wp-image-"]');
+
+  if (lightboxImages) {
+    console.log('found lightbox images');
+    console.log(lightboxImages);
+  }
+});
+
+</script>
