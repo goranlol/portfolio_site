@@ -73,6 +73,7 @@
 
 <script>
 
+  // Primitive Lightbox 
   document.addEventListener('DOMContentLoaded', function(){
 
     // Make lightbox functional 
