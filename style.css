@@ -1,5 +1,5 @@
 /*
-Theme Name: Portfolio
+Theme Name: Portfolio Infra
 Author: Goran Grce
 Version: 2.7 "INFRA"
 Author URI: https://wordpress.org/
@@ -147,7 +147,7 @@ a:hover {
 	color:var(--bg-color);
   letter-spacing:0.01em;
   -webkit-text-stroke: 1px var(--heading-color);
-
+  
 	position:absolute;
 	top:22px;
 	left:16px;
@@ -566,11 +566,29 @@ a:hover {
 }
 
 #lightbox-image {
-  height:100vh;
+  height:100%;
   width:auto;
   display:inherit;
-
   margin:auto;
+
+}
+
+#lightbox-prev-image {
+  position:fixed;
+  display:block;
+  width:auto; 
+  height:200px;
+  top:calc(50% - 100px);
+  left:0px;
+}
+
+#lightbox-next-image {
+  position:fixed;
+  display:block;
+  width:auto;
+  height:200px;
+  top:calc(50% - 100px);
+  right:0px;
 }
 
 /*

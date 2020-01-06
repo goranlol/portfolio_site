@@ -5,7 +5,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php single_post_title(); ?> - Goran Grce</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
 </head>
 
@@ -20,6 +19,7 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo get_bloginfo('template_directory'); ?>/style.css">
 
+<html>
 <body>
 
   <div class="title">goran g<span style="letter-spacing:0.12em;">r</span>ce</div>

@@ -1,3 +1,5 @@
+
+
 <?php
 
 	$args = array(
@@ -62,91 +64,15 @@
 
 <div id="lightbox-wrapper">
   <div id="lightbox" class="lightbox" tabindex="-1" > 
-      <a id="lightbox-close"> 
+      <a id="lightbox-close">
         <img id="lightbox-image" src="">
+        <img id="lightbox-prev-image" src="">
+        <img id="lightbox-next-image" src="">
       </a>
   </div>
 </div>
 
 </body>
+</html>
 
-
-<script>
-
-  // Primitive Lightbox 
-  document.addEventListener('DOMContentLoaded', function(){
-
-    // Make lightbox functional 
-    const lightbox = document.querySelector('[id="lightbox"]');
-    const lightboxWrap = document.querySelector('[id="lightbox-wrapper"]');
-    const lightboxCloser = document.querySelector('[id="lightbox-close"]'); 
-    const lightboxImage = document.querySelector('[id="lightbox-image"]');
-
-    const lightboxStyles = window.getComputedStyle(lightbox).getPropertyValue('transition-duration');
-
-    lightboxCloser.addEventListener('click', function(event){
-
-      lightbox.setAttribute('class', 'lightbox');
-      
-      setTimeout(function(){
-        lightboxWrap.style.top = "-100vh";
-      }, 350);
-
-    });
-
-    // Grab images in the post that we could lightbox
-    const lightboxImages = document.querySelectorAll('[class^="wp-image-"]'), len = lightboxImages.length;
-
-    // Loop through and set up images as clickable
-    for (var i=0; i<len; i++) {
-	    lightboxImages[i].style.cursor = "pointer";
-      
-      // Send clicked image to lightbox 
-      lightboxImages[i].addEventListener('click', function(event){
-            
-        lightbox.setAttribute('class', 'lightbox-open');
-        lightboxWrap.style.top = "0vh";
-  
-        // Source URL of the image that we're going to display in the lightbox 
-        imgSrc = this.getAttribute('src');
-        lightboxImage.setAttribute('src', imgSrc);
-
-      });
-	  
-    };
-
-  });
-
-
-  /* OLD CODE
- 
-    // Make lightbox functional 
-    const lightbox = document.querySelector('[id="lightbox"]');
-    const lightboxCloser = document.querySelector('[id="lightbox-close"]'); 
-
-
-    lightboxCloser.addEventListener('click', function(event){
-      lightbox.setAttribute('class', 'lightbox-wrapper');
-    });
-
-    // Grab images in the post that we could lightbox
-    const lightboxImages = document.querySelectorAll('[class^="wp-image-"]'), len = lightboxImages.length;
-
-    // Loop through and set up images as clickable
-    for (var i=0; i<len; i++) {
-	    lightboxImages[i].style.cursor = "pointer";
-
-      // Source URL of the image that we're going to display in the lightbox 
-      imgSrc = lightboxImages[i].getAttribute('src');
-      
-      // Send clicked image to lightbox 
-      lightboxImages[i].addEventListener('click', function(event){      
-         lightbox.setAttribute('class', 'lightbox-wrapper-open');
-         alert(imgSrc);
-      });
-	  
-    };
-
-  */
-
-</script>
+<script src="<?php echo get_bloginfo('template_directory'); ?>/lightbox.js"></script>
