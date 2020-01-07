@@ -63,12 +63,16 @@
 	</div>
 
 <div id="lightbox-wrapper">
-  <div id="lightbox" class="lightbox" tabindex="-1" > 
-      <a id="lightbox-close">
-        <img id="lightbox-image" src="">
-        <img id="lightbox-prev-image" src="">
-        <img id="lightbox-next-image" src="">
+  <div id="lightbox" class="lightbox" > 
+    
+      <a id="lightbox-close" class="lightbox-close">        
+
       </a>
+      
+      <img id="lightbox-image" class="lightbox-image" src="">
+      <img id="lightbox-prev-image" class="lightbox-prev-image" src="">
+      <img id="lightbox-next-image" class="lightbox-next-image" src="">
+
   </div>
 </div>
 
