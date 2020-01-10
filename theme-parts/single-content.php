@@ -65,13 +65,11 @@
 <div id="lightbox-wrapper">
   <div id="lightbox" class="lightbox" > 
     
-      <a id="lightbox-close" class="lightbox-close">        
+      <a tabindex="2" id="lightbox-close" class="lightbox-closer" href="#_" ></a>
+      <a tabindex="3" id="gotoPrev" class="lightbox-navs lightbox-gotoPrev" href="#_" > &#x2190 </a>
+      <a tabindex="4" id="gotoNext" class="lightbox-navs lightbox-gotoNext" href="#_" > &#x2192 </a>
 
-      </a>
-      
       <img id="lightbox-image" class="lightbox-image" src="">
-      <img id="lightbox-prev-image" class="lightbox-prev-image" src="">
-      <img id="lightbox-next-image" class="lightbox-next-image" src="">
 
   </div>
 </div>
