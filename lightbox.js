@@ -2,9 +2,12 @@
 
 // vars
 ImageSrc = 0;
+lightboxOpen = false;
 lightboxReady = false;
 
+
 document.addEventListener('DOMContentLoaded', function(){
+
 
     // Init  
     const lightbox = document.querySelector('[id="lightbox"]');
@@ -26,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function(){
     // Check if we're on a screen big enough to warrant a lightbox
     if(window.innerWidth > 840){
 
+        // Lightbox on and off master functions
+
         function disableScroll() { 
             // Get the current page scroll position 
             scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
@@ -41,6 +46,31 @@ document.addEventListener('DOMContentLoaded', function(){
             window.onscroll = function() {}; 
         } 
         
+        function closeLightbox() {
+            lightbox.setAttribute('class', 'lightbox');
+            currImage.setAttribute('class', 'lightbox-image');
+            setTimeout(function(){lightboxWrap.style.display = "none";}, 250);
+            
+            lightboxReady = false;
+            lightboxOpen = false;
+            
+            enableScroll();
+        }
+
+        function openLightbox() {
+
+            lightboxWrap.style.display = "block";
+            setTimeout(function(){
+                lightbox.setAttribute('class', 'lightbox-open');
+                ImageSend();
+            }, 1);
+
+            gotoNext.focus();
+            lightboxOpen = true; 
+
+            disableScroll();
+            
+        }
 
         for (var i=0; i<len; i++) {
 
@@ -57,15 +87,9 @@ document.addEventListener('DOMContentLoaded', function(){
     
             // Create click event that sends images to lightbox for display 
             clickTag.addEventListener('click', function(event){
-    
-                disableScroll();
 
-                lightboxReady = true;
                 ImageSrc = parseInt(this.getAttribute('id'));
-                ImageSend();
-    
-                lightbox.setAttribute('class', 'lightbox-open');
-                lightboxWrap.style.top = "0vh";
+                openLightbox();
     
             });
         
@@ -103,47 +127,61 @@ document.addEventListener('DOMContentLoaded', function(){
         // Set background <a> tag in lightbox HTML to close lightbox when clicked
         lightboxCloser.addEventListener('click', function(event){
 
-            lightbox.setAttribute('class', 'lightbox');
-            currImage.setAttribute('class', 'lightbox-image');
-            setTimeout(function(){lightboxWrap.style.top = "-100vh";}, 350);
-            lightboxReady = false;
-            enableScroll();
+            closeLightbox();
 
         });
 
         // Keyboard controls
         document.addEventListener('keydown', function(event) {
 
-            // Scroll to next image
-            if(event.code == "ArrowRight" && ImageSrc < lightboxImages.length-1 && lightboxReady == true){
-                ImageSrc = ImageSrc + 1;
-                lightboxReady = false; 
-                currImage.setAttribute('class', 'lightbox-prev-image');
-                currImage.ontransitionend = function(event){
-                    setTimeout(function(){ gotoNextImage(); }, 0);
-                } 
-            }
 
-            // Scroll to prev image
-            if(event.code == "ArrowLeft" && ImageSrc > 0 && lightboxReady == true){
-                ImageSrc = ImageSrc - 1;
-                lightboxReady = false;  
-                currImage.setAttribute('class', 'lightbox-next-image');
-                currImage.ontransitionend = function(){
-                    setTimeout(function(){ gotoPrevImage(); }, 0);
+            if(lightboxOpen == true){
+                // Scroll to next image
+                if(event.code == "ArrowRight" && ImageSrc < lightboxImages.length-1 && lightboxReady == true){
+                    ImageSrc = ImageSrc + 1;
+                    lightboxReady = false; 
+                    currImage.setAttribute('class', 'lightbox-prev-image');
+                    currImage.ontransitionend = function(event){
+                        setTimeout(function(){ gotoNextImage(); }, 0);
+                    } 
+                }
+
+                // Scroll to prev image
+                if(event.code == "ArrowLeft" && ImageSrc > 0 && lightboxReady == true){
+                    ImageSrc = ImageSrc - 1;
+                    lightboxReady = false;  
+                    currImage.setAttribute('class', 'lightbox-next-image');
+                    currImage.ontransitionend = function(){
+                        setTimeout(function(){ gotoPrevImage(); }, 0);
+                    }
+                }
+
+                // Close lightbox
+                if(event.code == "Escape" ){
+
+                    closeLightbox();
+                
+                }
+
+                // Crude focus trapping 
+                if(event.code == "Tab"){
+
+                    if(document.activeElement != gotoPrev || document.activeElement != gotoNext){
+                        event.preventDefault();
+                    }
+
+
+                    if(ImageSrc == lightboxImages.length-1){
+                        gotoPrev.focus();
+                    }else{
+                        gotoNext.focus();
+                    }
+
+                    console.log(document.activeElement)
+
                 }
             }
 
-            // Close lightbox
-            if(event.code == "Escape" && lightboxReady == true){
-
-                lightbox.setAttribute('class', 'lightbox');
-                currImage.setAttribute('class', 'lightbox-image');
-                setTimeout(function(){ lightboxWrap.style.top = "-100vh"; }, 350);
-                lightboxReady = false;
-                enableScroll();
-            
-            }
 
         });
 
@@ -153,23 +191,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
         // Send clicked image to lightbox
         function ImageSend(){
-            currImage.setAttribute('src', lightboxImages[ImageSrc].getAttribute('src'));
-            currImage.setAttribute('class', 'lightbox-image-open'); 
-            
-            // Here we hide the prev and next buttons in case there are no more images to display on either side
-            if(ImageSrc < lightboxImages.length-1){
-                gotoNext.style = "";
-            }else{
-                gotoNext.style.display = "none";
-            }     
-            
-            if(ImageSrc > 0){
-                gotoPrev.style = "";
-            }else{
-                gotoPrev.style.display = "none";
+
+            if(lightboxOpen == true){
+                currImage.setAttribute('src', lightboxImages[ImageSrc].getAttribute('src'));
+                currImage.setAttribute('class', 'lightbox-image-open'); 
+                
+                // Here we hide the prev and next buttons in case there are no more images to display on either side
+                if(ImageSrc == lightboxImages.length-1){
+                    gotoNext.style.display = "none";
+                }else{
+                    gotoNext.style = "";
+                }     
+                
+                if(ImageSrc == 0){
+                    gotoPrev.style.display = "none";
+                }else{
+                    gotoPrev.style = "";
+                }
+                
+                lightboxReady = true;  
             }
-            
-            lightboxReady = true;  
+
         };
 
         // Go to previous image in lightboxImages array

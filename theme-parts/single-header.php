@@ -24,4 +24,4 @@
 
   <div class="title">goran g<span style="letter-spacing:0.12em;">r</span>ce</div>
 
-	<a class="home-btn" tabindex="1" href="<?php echo get_bloginfo( 'wpurl' );?>"></a>
+	<a class="home-btn" id="home-btn" tabindex="1" href="<?php echo get_bloginfo( 'wpurl' );?>"></a>
